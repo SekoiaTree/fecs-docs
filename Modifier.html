@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>File modifier</title>
+  <script src="sneak_peek.js"></script>
+  <script>
+	let cleanerRegex = /(?<=<div>[^]+)\n(?=[^]+<\/div>)/g;
+	let lineSplit = /<strong>([^]+?)(?=(?:<strong>)|(?:<\/body>))/g;
+	let headerSmall = /<header.+\n<h1(.+?)<\/h1>\n<\/header>/g;
+	let link = /\[\[([^]+?)\]\]/g;
+	let addScript = /<\/title>\n/g;
+	function change() {
+	let input = document.getElementById("main").value.replace("<p>", "<div>").replace("</p>", "</div>")
+		.replace(cleanerRegex, " ")
+		.replace(lineSplit, "<div><strong>$1</div>")
+		.replace(headerSmall, "<h3$1</h3>")
+		.replace(link, "<a class=\"internal-link\" href=\"$1.html\">$1</a>")
+		.replace(addScript, "$&  <script src=\"sneak_peek.js\"><\/script>\n");
+// Copy the text inside the text field
+  navigator.clipboard.writeText(input);
+  document.getElementById("main").value = "";
+	}
+  </script>
+  </head>
+  <body>
+  <textarea id="main"></textarea>
+  <button onclick="change()">Transform!</button>
+  </body>
+  
+  </head>

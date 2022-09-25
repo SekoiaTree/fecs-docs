@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Documentation</title>
+  <script src="sneak_peek.js"></script>
+  <style>
+html {
+line-height: 1.5;
+font-family: Georgia, serif;
+font-size: 20px;
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 1em;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+font-size: 85%;
+margin: 0;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+background-color: #1a1a1a;
+border: none;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.even {
+background-color: #ddd;
+}
+th, td {
+border-right: 1px solid #aaa;
+}
+th:last-child, td:last-child {
+border-right: none;
+}
+</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Documentation</h1>
+</header>
+<h1 id="basic-syntax">Basic syntax</h1>
+<h3 id="assembly">Assembly</h3>
+<p>Our assembler functions as follows:</p>
+<ul>
+<li>A program is divided into lines</li>
+<li>A line is divided into tokens separated by spaces</li>
+<li>Each line is processed as a list of tokens</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 40%" />
+<col style="width: 10%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Token type</th>
+<th>Description</th>
+<th>Identifier</th>
+<th>Syntax</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Register</td>
+<td>One of the 32 registers in the CPU</td>
+<td>R</td>
+<td><code>rN</code> where <code>N</code> is the index</td>
+</tr>
+<tr class="even">
+<td>Number</td>
+<td>A number, 16 bits. Cannot be negative (yet).</td>
+<td>N</td>
+<td><code>0xN</code>, <code>0bN</code>, <code>0oN</code>,
+<code>0dN</code>/<code>N</code> where N is the number in hexadecimal,
+binary, octal or decimal</td>
+</tr>
+<tr class="odd">
+<td>Boolean</td>
+<td>A true or false value, a single bit.</td>
+<td>B</td>
+<td><code>true</code> or <code>false</code></td>
+</tr>
+<tr class="even">
+<td>Identifier</td>
+<td>A piece of text. Usually either a label or a specific
+instruction</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td>Label</td>
+<td>An alias or line marker; pre-processing tool to not have to use
+numbers everywhere</td>
+<td>N/A</td>
+<td><code>&gt;name:</code> for aliases, <code>&#39;name:</code> for line
+markers. Remove : for use</td>
+</tr>
+</tbody>
+</table>
+<p>In the file for an instruction, the instruction will be written as
+<code>instruction data:RN -&gt; test:R</code>. This would mean that
+“data” (the name is used for the description) is a register or a
+number.</p>
+<h3 id="instructions">Instructions</h3>
+<ul>
+<li><a class="internal-link" href="No-op.html">No-op</a>. Does nothing, takes 1 cycle.</li>
+<li><a class="internal-link" href="Drop.html">Drop</a>. Free up a register for the assembler to use
+temporarily.</li>
+<li><a class="internal-link" href="Assignment.html">Assignment</a>. Puts a value into a register.</li>
+<li><a class="internal-link" href="Calculate.html">Calculate</a>. Puts the result of an operation. This instruction may
+use temporary registers, and a warning will be printed.</li>
+<li><a class="internal-link" href="Set Palette.html">Set Palette</a>. Sets the palette to a passed value.</li>
+<li><a class="internal-link" href="Set Palette Color.html">Set Palette Color</a>. Sets a color in the current palette.</li>
+<li><a class="internal-link" href="Set Pixel.html">Set Pixel</a>. Sets a pixel on the screen.</li>
+<li><a class="internal-link" href="Draw Sprite.html">Draw Sprite</a>. Draws a sprite according to many parameters</li>
+<li><a class="internal-link" href="Draw Rectangle.html">Draw Rectangle</a>. Draws a rectangle on the screen.</li>
+<li><a class="internal-link" href="Test condition.html">Test condition</a>. Compare two values</li>
+<li><a class="internal-link" href="Jump if.html">Jump if</a>. Jump to an instruction if something is true</li>
+<li><a class="internal-link" href="Jump or Call.html">Jump or Call</a>. Jump to an instruction unconditionally</li>
+<li><a class="internal-link" href="Return.html">Return</a>. Return after a call.</li>
+<li><a class="internal-link" href="Create entity.html">Create entity</a>. Create a new entity.</li>
+<li><a class="internal-link" href="Write to RAM.html">Write to RAM</a>. Write a number to CPU RAM.</li>
+<li><a class="internal-link" href="Read from RAM.html">Read from RAM</a>. Read a number from CPU RAM.</li>
+<li><a class="internal-link" href="Write range of registers to RAM.html">Write range of registers to RAM</a>.</li>
+<li><a class="internal-link" href="Read range of registers from RAM.html">Read range of registers from RAM</a>.</li>
+<li><a class="internal-link" href="Copy RAM.html">Copy RAM</a>. Copy part of CPU RAM into itself.</li>
+<li><a class="internal-link" href="Load resource.html">Load resource</a>. Load a resource from the general bank.</li>
+<li><a class="internal-link" href="Push resource.html">Push resource</a>. Push a resource into the general bank.</li>
+<li><a class="internal-link" href="Request components.html">Request components</a>. Request a or all components from the current
+entity.</li>
+<li><a class="internal-link" href="Push components.html">Push components</a>. Push a or all components from the current
+entity.</li>
+<li><a class="internal-link" href="Entity meta-instructions.html">Entity meta-instructions</a>. Delete or skip the current entity</li>
+<li><a class="internal-link" href="Delete components.html">Delete components</a>. Remove components from the current
+entity</li>
+<li><a class="internal-link" href="Get internal numbers.html">Get internal numbers</a>. Get a variety of internal numbers for
+manipulation.</li>
+<li><a class="internal-link" href="Set internal numbers.html">Set internal numbers</a>. Set a variety of internal numbers for
+manipulation.</li>
+<li><a class="internal-link" href="Input.html">Input</a>. Get player input.</li>
+<li><a class="internal-link" href="Set sound values.html">Set sound values</a>. Set audio output values.</li>
+</ul>
+</body>
+</html>
